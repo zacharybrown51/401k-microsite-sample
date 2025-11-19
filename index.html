@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mammini Company 401(k) Plan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #223743;
+      background: #f8f9fa;
+    }
+
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .nav {
+      background: #223743;
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .company-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #ebdcc5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #118aa9;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #223743 0%, #118aa9 100%);
+      color: white;
+      padding: 4rem 0;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      padding-right: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .hero-video-container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      background: #000;
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #ebdcc5;
+      color: #223743;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      background: #3e8e8a;
+      color: white;
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-white {
+      background: white;
+    }
+
+    .section-light {
+      background: #f8f9fa;
+    }
+
+    .section-accent {
+      background: #ebdcc5;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #223743;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      border-left: 4px solid #118aa9;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      color: #223743;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+    }
+
+    .card p, .card ul {
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: linear-gradient(135deg, #3e8e8a 0%, #118aa9 100%);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .highlight-box h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .highlight-box p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    /* Vesting Table */
+    .vesting-table {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .vesting-table th {
+      background: #223743;
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .vesting-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .vesting-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .vesting-table tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .video-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .video-card-header {
+      background: #223743;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .video-card-header h3 {
+      color: white;
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    .video-card-body {
+      padding: 1.5rem;
+    }
+
+    .video-card-description {
+      margin-top: 1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Resources */
+    .resource-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 2px solid #ebdcc5;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .resource-item:hover {
+      border-color: #118aa9;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .resource-item h4 {
+      color: #223743;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .faq-question {
+      font-weight: 600;
+      color: #223743;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-toggle {
+      font-size: 1.5rem;
+      color: #118aa9;
+      transition: transform 0.3s;
+    }
+
+    .faq-answer {
+      margin-top: 1rem;
+      color: #555;
+      line-height: 1.8;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    /* Contact */
+    .contact-info {
+      text-align: center;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-info h3 {
+      color: #223743;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .contact-detail a {
+      color: #118aa9;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .contact-detail a:hover {
+      color: #3e8e8a;
+    }
+
+    /* Footer */
+    .footer {
+      background: #223743;
+      color: white;
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-main p {
+      margin-bottom: 1rem;
+      opacity: 0.95;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .footer-address {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .footer-links a {
+      color: #118aa9;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #ebdcc5;
+    }
+
+    .footer-copyright {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .footer a {
+      color: #118aa9;
+    }
+
+    .footer a:hover {
+      color: #ebdcc5;
+    }
+
+    /* Two Column Layout */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .info-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-list li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+
+    .info-list li strong {
+      color: #223743;
+      min-width: 160px;
+    }
+
+    .accent-text {
+      color: #3e8e8a;
+      font-weight: 600;
+    }
+
+    .securities-note {
+      text-align: center;
+      background: rgba(17, 138, 169, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: #223743;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-content, .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text {
+        padding-right: 0;
+        text-align: center;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Navigation -->
+  <nav class="nav">
+   <div class="container">
+    <div class="nav-content"><span class="company-name">Mammini Company 401(k)</span>
+     <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#overview">Plan Overview</a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+     </ul>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="home" class="hero">
+   <div class="container">
+    <div class="hero-content">
+     <div class="hero-text">
+      <h1>Welcome to Your 401(k) Plan</h1>
+      <p>Your future starts today. Learn about your retirement benefits and start building the future you deserve.</p><a href="https://capitalgroup.retirementpartner.com/participant/#/login?accu=AmFunds" target="_blank" rel="noopener noreferrer" class="cta-button">Access Your Account</a>
+     </div>
+     <div class="hero-video-container">
+      <div class="video-embed"><iframe src="https://www.youtube.com/embed/756ODquxePY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Plan Overview -->
+  <section id="overview" class="section-white">
+   <div class="container">
+    <h2>Plan Overview</h2>
+    <p class="section-intro">The Mammini Company 401(k) Plan is designed to help you build a secure retirement future with generous employer contributions and flexible savings options.</p>
+    <div class="highlight-box">
+     <h3>🎉 3% Employer Contribution + Profit Sharing</h3>
+     <p>Mammini Company contributes 3% of your eligible compensation to your 401(k) account - <strong>no employee contribution required!</strong> Plus, you may receive additional discretionary annual profit-sharing contributions. This is free money to help you save for retirement.</p>
+    </div>
+    <div class="two-column">
+     <div>
+      <h3 style="color: #223743; margin-bottom: 1.5rem;">Plan Highlights</h3>
+      <ul class="info-list">
+       <li><strong>Eligibility:</strong> <span>Age 21, immediate entry</span></li>
+       <li><strong>Entry Date:</strong> <span>Immediate upon eligibility</span></li>
+       <li><strong>Employer Match:</strong> <span class="accent-text">3% non-elective safe harbor contribution</span></li>
+       <li><strong>Profit Sharing:</strong> <span class="accent-text">Discretionary annual contribution</span></li>
+       <li><strong>Roth Option:</strong> <span>Available</span></li>
+       <li><strong>Loans:</strong> <span>Allowed with standard provisions</span></li>
+      </ul>
+     </div>
+     <div>
+      <h3 style="color: #223743; margin-bottom: 1.5rem;">Vesting Schedule</h3>
+      <p style="margin-bottom: 1rem; color: #555;">Your employer contributions vest according to the following schedule:</p>
+      <table class="vesting-table">
+       <thead>
+        <tr>
+         <th>Service Period</th>
+         <th>Vested %</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td>Less than 1 year</td>
+         <td>0%</td>
+        </tr>
+        <tr>
+         <td>1 to 2 years</td>
+         <td>33%</td>
+        </tr>
+        <tr>
+         <td>2 to 3 years</td>
+         <td>66%</td>
+        </tr>
+        <tr>
+         <td>3+ years</td>
+         <td>100%</td>
+        </tr>
+       </tbody>
+      </table>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: #666; font-style: italic;">Your own contributions are always 100% vested.</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Getting Started -->
+  <section id="getting-started" class="section-light">
+   <div class="container">
+    <h2>Getting Started</h2>
+    <p class="section-intro">Follow these simple steps to make the most of your 401(k) plan benefits.</p>
+    <div class="card-grid">
+     <div class="card">
+      <h3><span class="card-icon">1️⃣</span> Enroll in the Plan</h3>
+      <p>You're immediately eligible to participate once you turn 21. Contact Mammini Company to begin your enrollment or access your account online.</p>
+     </div>
+     <div class="card">
+      <h3><span class="card-icon">2️⃣</span> Choose Your Contribution</h3>
+      <p>Decide how much you want to contribute from your paycheck. Remember, Mammini contributes 3% regardless of your choice!</p>
+     </div>
+     <div class="card">
+      <h3><span class="card-icon">3️⃣</span> Select Your Investments</h3>
+      <p>Choose from a variety of investment options that match your retirement goals, risk tolerance, and time horizon.</p>
+     </div>
+     <div class="card">
+      <h3><span class="card-icon">4️⃣</span> Review Regularly</h3>
+      <p>Check your account periodically and adjust your contribution rate or investments as your life circumstances change.</p>
+     </div>
+    </div>
+    <div class="highlight-box" style="margin-top: 3rem;">
+     <h3>💡 Pro Tip</h3>
+     <p>Consider increasing your contribution percentage over time. Even small increases can make a significant difference in your retirement savings!</p>
+    </div>
+   </div>
+  </section><!-- Educational Videos -->
+  <section id="education" class="section-white">
+   <div class="container">
+    <h2>📚 Educational Resources</h2>
+    <p class="section-intro">Watch these videos to learn more about your 401(k) plan and retirement planning.</p>
+    <div class="video-grid">
+     <div class="video-card">
+      <div class="video-card-header">
+       <h3>Enrollment Meeting</h3>
+      </div>
+      <div class="video-card-body">
+       <div class="video-embed"><iframe src="https://www.youtube.com/embed/OfqnOpGuEes" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       </div>
+       <p class="video-card-description">Learn the basics of your 401(k) plan including enrollment, contribution options, and the benefits of the Mammini Company match.</p>
+      </div>
+     </div>
+     <div class="video-card">
+      <div class="video-card-header">
+       <h3>Traditional vs. Roth</h3>
+      </div>
+      <div class="video-card-body">
+       <div class="video-embed"><iframe src="https://www.youtube.com/embed/h3poZxOy6eY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       </div>
+       <p class="video-card-description">Understand the difference between traditional pre-tax and Roth after-tax contributions, and which might be right for you.</p>
+      </div>
+     </div>
+     <div class="video-card">
+      <div class="video-card-header">
+       <h3>What is a Target Date Fund?</h3>
+      </div>
+      <div class="video-card-body">
+       <div class="video-embed"><iframe src="https://www.youtube.com/embed/7F6x5s66-9M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       </div>
+       <p class="video-card-description">Discover how target date funds work and how they can simplify your retirement investment strategy.</p>
+      </div>
+     </div>
+    </div>
+    <div class="securities-note"><strong>Securities offered through Commonwealth Financial Network®, Member FINRA/SIPC, a Registered Investment Adviser.</strong>
+    </div>
+   </div>
+  </section><!-- Resources -->
+  <section id="resources" class="section-accent">
+   <div class="container">
+    <h2>Resources &amp; Documents</h2>
+    <p class="section-intro">Access important plan documents and helpful resources to guide your retirement planning journey.</p>
+    <div class="card-grid">
+     <div class="resource-item">
+      <h4>📄 Summary Plan Description (SPD)</h4>
+      <p>Complete details about your plan benefits, rules, and features. Contact Mammini Company at (858) 444-9750 to request this document.</p>
+     </div>
+     <div class="resource-item">
+      <h4>📋 Plan Highlights</h4>
+      <p>Quick reference guide with key plan information at a glance. Contact Mammini Company to request this document.</p>
+     </div><a href="https://capitalgroup.retirementpartner.com/participant/#/login?accu=AmFunds" target="_blank" rel="noopener noreferrer" class="resource-item"> <h4>🔐 Account Access</h4><p>Log in to view your balance, change investments, and manage your account.</p></a>
+    </div>
+   </div>
+  </section><!-- FAQ -->
+  <section id="faq" class="section-light">
+   <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <p class="section-intro">Quick answers to common questions about your 401(k) plan.</p>
+    <div style="max-width: 800px; margin: 0 auto;">
+     <div class="faq-item">
+      <div class="faq-question">
+       When can I start participating in the plan? <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+       You can start participating immediately once you reach age 21. There's no waiting period - you can begin contributing and receiving employer contributions right away!
+      </div>
+     </div>
+     <div class="faq-item">
+      <div class="faq-question">
+       How much does Mammini Company contribute? <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+       Mammini Company contributes 3% of your eligible compensation to your 401(k) account as a safe harbor non-elective contribution. Additionally, the company may provide discretionary annual profit-sharing contributions.
+      </div>
+     </div>
+     <div class="faq-item">
+      <div class="faq-question">
+       What is vesting and how does it work? <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+       Vesting determines your ownership of employer contributions. Your own contributions are always 100% yours. Employer contributions vest as follows: 0% in your first year, 33% after 1 year, 66% after 2 years, and 100% after 3 years of service.
+      </div>
+     </div>
+     <div class="faq-item">
+      <div class="faq-question">
+       Can I take a loan from my 401(k)? <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+       Yes, the plan allows loans subject to standard loan provisions. Contact Mammini Company or access your account portal for specific loan terms, limits, and application procedures.
+      </div>
+     </div>
+     <div class="faq-item">
+      <div class="faq-question">
+       What's the difference between Traditional and Roth contributions? <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+       Traditional 401(k) contributions are made with pre-tax dollars (reducing your current taxable income), and you pay taxes when you withdraw in retirement. Roth 401(k) contributions are made with after-tax dollars, but qualified withdrawals in retirement are tax-free.
+      </div>
+     </div>
+     <div class="faq-item">
+      <div class="faq-question">
+       How do I change my contribution amount or investments? <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+       You can change your contribution amount or investment selections at any time by logging into your account at the Capital Group portal or by contacting Mammini Company directly.
+      </div>
+     </div>
+     <div class="faq-item">
+      <div class="faq-question">
+       What happens to my account if I leave the company? <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+       If you leave Mammini Company, you keep your vested account balance. You can typically roll it over to an IRA or your new employer's plan, leave it in the plan (if balance requirements are met), or take a distribution (subject to taxes and potential penalties if under age 59½).
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact -->
+  <section id="contact" class="section-white">
+   <div class="container">
+    <h2>Contact Us</h2>
+    <p class="section-intro">Have questions? We're here to help you make the most of your retirement benefits.</p>
+    <div class="contact-info">
+     <h3>Mammini Company</h3>
+     <div class="contact-detail"><span>📞</span> <a href="tel:8584449750">(858) 444-9750</a>
+     </div>
+     <div class="contact-detail"><span>✉️</span> <a href="mailto:info@mammini.com">info@mammini.com</a>
+     </div>
+     <p style="margin-top: 2rem; color: #666;">Our team is ready to assist you with enrollment, account questions, and retirement planning guidance.</p>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="footer">
+   <div class="footer-content">
+    <div class="footer-main">
+     <p class="footer-address">Mammini Company<br>
+      440 Stevens Avenue, Suite 350, Solana Beach, CA 92075 | P 888.547.6972</p>
+     <p>The Financial Advisor(s) associated with this website may discuss and/or transact business only with residents in states which they are properly registered or licensed. No offers may be made or accepted from any resident of any other state. Please check BrokerCheck for a list of current registrations.</p>
+     <p>The Financial professionals of Mammini Company are registered representatives and investment adviser representatives with/and offers securities and advisory services through Commonwealth Financial Network®, Member <a href="https://www.finra.org" target="_blank" rel="noopener noreferrer">FINRA</a>/<a href="https://www.sipc.org" target="_blank" rel="noopener noreferrer">SIPC</a>, a Registered Investment Adviser. Fixed insurance products and services are separate from and not offered through Commonwealth. CA Insurance Lic. # Mike Mammini 0727855 | Chris Landwair 0C12483</p>
+     <p>Information presented on this site is for informational purposes only and does not intend to make an offer or solicitation for the sale or purchase of any product or security.</p>
+     <div class="footer-links"><a href="https://brokercheck.finra.org" target="_blank" rel="noopener noreferrer">BrokerCheck</a>
+     </div>
+     <p style="margin-top: 1.5rem;">Use of Cookies: Our website uses Google Analytics to provide insight into our website and to improve the relevance of marketing. For more details about how Google uses information from sites or apps that use our services, visit <a href="https://google.com/policies/privacy/partners/" target="_blank" rel="noopener noreferrer">google.com/policies/privacy/partners</a>. If you would like to opt out of Google Analytics, please visit <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">tools.google.com/dlpage/gaoptout</a>.</p>
+    </div>
+    <div class="footer-copyright">
+     <p>Copyright 2025 Commonwealth Financial Network | Copyright 2025 Mammini Company</p>
+     <p style="margin-top: 0.5rem; font-size: 0.85rem;">This site provides general information about the Mammini Company 401(k) Plan. For complete details, please refer to the Summary Plan Description.</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+          if (otherItem !== this) {
+            otherItem.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ba7e95486f3ec',t:'MTc2MzUxMjgyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
